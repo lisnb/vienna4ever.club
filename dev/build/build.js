@@ -29,7 +29,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       chunkModules: false
     }) + '\n\n')
 
-    fixStaticPath();
+    // fixStaticPath();
 
     if (stats.hasErrors()) {
       console.log(chalk.red('  Build failed with errors.\n'))
