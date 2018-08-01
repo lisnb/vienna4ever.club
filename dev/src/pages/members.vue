@@ -11,6 +11,9 @@
       <f7-list-item link="#" title="小欧" footer="100pts" after="查看详情"  @click.prevent="memberDetail">
         <img slot="media" src="/static/avatars/xiaoou.jpeg" width="60" />
       </f7-list-item>
+    </f7-list>
+    <f7-block-title>待清退</f7-block-title>
+    <f7-list>
       <f7-list-item link="#" title="凡哥" after="查看详情"  @click.prevent="memberDetail">
         <img slot="media" src="/static/avatars/wufan.jpeg" width="60" />
         <span style="color:red;" slot="footer">-1pts</span>
