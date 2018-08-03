@@ -3,10 +3,11 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+console.log(path.join(__dirname, "../../"))
 
 module.exports = {
   dev: {
-
+    contentBase: path.join(__dirname, "../../"),
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '',

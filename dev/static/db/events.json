@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "title": "院长",
+      "content": "买酸奶",
+      "bonus" : "+7",
+      "datetime": "2018年8月2日",
+      "repeat": 1
+    }, {
+      "title": "凡哥",
+      "content": "不和我们一起吃饭",
+      "bonus": "-3",
+      "datetime": "2018年8月2日",
+      "repeat": 1
+    },
+    {
+      "title": "凡哥",
+      "content": "不和我们一起吃饭",
+      "bonus": "-3",
+      "datetime": "2018年8月1日",
+      "repeat": 1
+    },
+    {
+      "title": "凡哥",
+      "content": "不和我们一起吃饭",
+      "bonus": "-3",
+      "datetime": "之前",
+      "repeat": 34
+    }
+  ]
+}

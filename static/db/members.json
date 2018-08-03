@@ -1,0 +1,35 @@
+{
+  "groups": [
+    {
+      "label": "维也纳3群",
+      "members": [
+        {
+          "nickname": "院长",
+          "name": "yuanzhang",
+          "pts": 107
+        },
+        {
+          "nickname": "希希",
+          "name": "xixi",
+          "pts": 100
+        },
+        {
+          "nickname": "小欧",
+          "name": "xiaoou",
+          "pts": 100
+        },
+        {
+          "nickname": "凡哥",
+          "name": "fange",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "label": "待清退",
+      "members": [
+        
+      ]
+    }
+  ]
+}
