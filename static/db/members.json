@@ -17,17 +17,18 @@
           "nickname": "小欧",
           "name": "xiaoou",
           "pts": 100
+        },
+        {
+          "nickname": "凡哥",
+          "name": "fange",
+          "pts": 0
         }
       ]
     },
     {
       "label": "待清退",
       "members": [
-        {
-          "nickname": "凡哥",
-          "name": "fange",
-          "pts": -8
-        }
+        
       ]
     }
   ]

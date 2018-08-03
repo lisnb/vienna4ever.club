@@ -1,6 +1,13 @@
 {
   "events": [
     {
+      "title": "凡哥",
+      "content": "给我们带switch玩",
+      "bonus": "+8",
+      "datetime": "2018年8月3日",
+      "repeat": 1
+    },
+    {
       "title": "院长",
       "content": "买酸奶",
       "bonus" : "+7",
