@@ -22,17 +22,17 @@
           "nickname": "Skr凡",
           "name": "fange",
           "pts": 0
+        },
+        {
+          "nickname": "自来水哥哥",
+          "name": "shuaige",
+          "pts": 0
         }
       ]
     },
     {
       "label": "待清退",
       "members": [
-        {
-          "nickname": "自来水哥哥",
-          "name": "shuaige",
-          "pts": -100
-        }
       ]
     }
   ]

@@ -2,6 +2,13 @@
   "events": [
     {
       "title": "帅哥",
+      "content": "拿快递",
+      "bonus": "+100",
+      "datetime": "2018年12月19日",
+      "repeat": 1
+    },
+    {
+      "title": "帅哥",
       "content": "自来水哥哥，诶呦... ",
       "bonus": "-200",
       "datetime": "2018年12月14日",
