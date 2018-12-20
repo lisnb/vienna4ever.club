@@ -46,17 +46,16 @@ export default {
       members: [],
       responseInProgress: false,
       session: {
-        member: null,
+        // member: null,
+        message: null,
         wsconn: null
       }
     };
   },
   mounted() {
     const that = this;
-    that.$f7ready(() => {
-      that.messagebar = that.$refs.messagebar.f7Messagebar;
-      that.messages = that.$refs.messages.f7Messages;
-    });
+
+    // get members
     axios.get("/static/db/members.json").then(function(response) {
       const resp = response.data;
       resp.groups.forEach(group => {
@@ -64,29 +63,34 @@ export default {
           that.members.push(...group.members);
         }
       });
+      // that.session.member = that.members[Math.floor(Math.random() * that.members.length)]
+      const member = that.members[Math.floor(Math.random() * that.members.length)]
+      that.session.message = {
+        name: member.nickname,
+        text: '',
+        avatar: 'http://' + document.location.host + '/static/avatars/' + member.name + '.jpeg'
+      }
     });
-    that.session.member = that.members[Math.floor(Math.random() * that.members.length)]
-    that.session.conn = new WebSocket("ws://" + document.location.host + "/ws");
-    that.session.conn.onclose = function (evt) {
-      // var item = document.createElement("div");
-      // item.innerHTML = "<b>Connection closed.</b>";
-      // appendLog(item);
+    
+    this.$f7ready(() => {
+      that.messagebar = that.$refs.messagebar.f7Messagebar;
+      that.messages = that.$refs.messages.f7Messages;
+    });
+    
+    // wsconn
+    this.session.wsconn = new WebSocket("ws://" + document.location.host + "/ws");
+    this.session.wsconn.onclose = function (evt) {
       console.log("connection closed")
     };
-    that.session.conn = function (evt) {
-      // var messages = evt.data.split('\n');
-      // for (var i = 0; i < messages.length; i++) {
-      //     var item = document.createElement("div");
-      //     item.innerText = messages[i];
-      //     appendLog(item);
-      // }
+    this.session.wsconn.onmessage = function (evt) {
+      console.log(evt)
       that.onMessageReceived(evt.data)
     };
   },
   methods: {
     isFirstMessage(message, index) {
-      const self = this;
-      const previousMessage = self.messagesData[index - 1];
+      // const self = this;
+      const previousMessage = this.messagesData[index - 1];
       if (message.isTitle) return false;
       if (
         !previousMessage ||
@@ -97,8 +101,8 @@ export default {
       return false;
     },
     isLastMessage(message, index) {
-      const self = this;
-      const nextMessage = self.messagesData[index + 1];
+      // const self = this;
+      const nextMessage = this.messagesData[index + 1];
       if (message.isTitle) return false;
       if (
         !nextMessage ||
@@ -109,8 +113,8 @@ export default {
       return false;
     },
     isTailMessage(message, index) {
-      const self = this;
-      const nextMessage = self.messagesData[index + 1];
+      // const self = this;
+      const nextMessage = this.messagesData[index + 1];
       if (message.isTitle) return false;
       if (
         !nextMessage ||
@@ -121,32 +125,23 @@ export default {
       return false;
     },
     onMessageReceived(data) {
-      // let messages = data.replace(/\n/g, '<br').trim()
-      // const messageReceived = []
       let message = JSON.parse(data)
+      message.type = message.name === this.session.message.name ? 'sent' : 'received'
       this.messagesData.push(message)
-
     },
     sendMessage() {
-      const self = this;
-      const text = self.messagebar
-        .getValue()
-        .replace(/\n/g, "<br>")
-        .trim();
-      const messagesToSend = [];
-      if (text.trim().length) {
-        messagesToSend.push({
-          text
-        });
+      // const self = this;
+      const text = this.messagebar.getValue()
+      if (!text.trim().length) {
+        return
       }
-      if (messagesToSend.length === 0) {
-        return;
-      }
-      self.messagebar.clear();
+      this.messagebar.clear();
       // Focus area
-      if (text.length) self.messagebar.focus();
-      // Send message
-      self.messagesData.push(...messagesToSend);
+      if (text.length) this.messagebar.focus();
+      let message = this.session.message
+      message.text = text
+      const messageContent = JSON.stringify(message)
+      this.session.wsconn.send(messageContent)
     }
   }
 };
